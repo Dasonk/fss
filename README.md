@@ -1,6 +1,6 @@
 # fss
 
-
+R package that provides various statistical tests just using sample statistics.
 
 ## Installation
 
