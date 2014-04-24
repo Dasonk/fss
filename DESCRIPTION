@@ -1,0 +1,10 @@
+Package: fss
+Type: Package
+Title: Provides various statistical tests just using sample statistics
+Version: 1.0
+Date: 2014-04-23
+Author: Dason Kurkiewicz
+Maintainer: Dason Kurkiewicz <dasonk@gmail.com>
+Description: R package that provides various statistical tests
+    just using sample statistics
+License: MIT + file LICENSE
