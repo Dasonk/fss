@@ -17,6 +17,8 @@
 #' @param simulate Logical. If true simulate data that matches the 
 #'  sample statistics and use the build in t-test function in R.  
 #'  If false just use the sample statistics directly to do the test.
+#' @param data.names Character vector. A two element character vector
+#'  that gives the names for the two groups.
 #' @export
 #' @examples
 #' x <- rnorm(20)
@@ -32,7 +34,8 @@
 #' all.equal(o1, o2)
 fss_t.test <- function(mean1, mean2, s1, s2, n1, n2, 
                     var.equal = FALSE, alternative = "two.sided", 
-                    conf.level = .95, simulate = FALSE)
+                    conf.level = .95, simulate = FALSE,
+                    data.names = c("x", "y"))
 {
     
     if(simulate){
@@ -75,7 +78,9 @@ fss_t.test <- function(mean1, mean2, s1, s2, n1, n2,
     
     quantile <- 1 - (1 - conf.level)/2
     confint <- (mean1 - mean2) + c(-1, 1) * qt(quantile, df) * se
-    
+
+    data.name <- paste(data.names[1], data.names[2], sep = " and ")
+
     # Match the output from t.test
     out <- list(statistic = c(t = tstat),
                 parameter = c(df = df),
@@ -87,7 +92,7 @@ fss_t.test <- function(mean1, mean2, s1, s2, n1, n2,
                 method = ifelse(var.equal, 
                                 " Two Sample t-test", 
                                 "Welch Two Sample t-test"),
-                data.name = "x and y")
+                data.name = data.name)
     
     class(out) <- "htest"
     
